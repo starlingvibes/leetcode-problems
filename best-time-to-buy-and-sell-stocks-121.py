@@ -25,15 +25,14 @@
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        maxprofit = 0
-        buypointer, sellpointer = 0, 1
-        if len(prices) < 2:
-            return 0
-        while sellpointer < len(prices):
-            if prices[sellpointer] > prices[buypointer]:
-                profit = prices[sellpointer] - prices[buypointer]
-                maxprofit = max(maxprofit, profit)
+        left, right, currmax, maximum = 0, 1, 0, 0
+
+        for i in range(len(prices) - 1):
+            diff = prices[right] - prices[left]
+            if diff > 0:
+                currmax = diff
+                maximum = max(maximum, currmax)
             else:
-                buypointer = sellpointer
-            sellpointer += 1
-        return maxprofit
+                left = right
+            right += 1
+        return maximum
