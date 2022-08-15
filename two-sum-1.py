@@ -31,7 +31,7 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums)):
             x = target - nums[i]
-            copy = nums[i+1::]
+            copy = nums[i + 1::]
             if x in copy:
-                return [i, copy.index(x)+i+1]
+                return [i, copy.index(x) + i + 1]
 # O(n) time complexity, better solution?
