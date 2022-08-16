@@ -35,3 +35,5 @@ class Solution:
                 res.append(shorter_arr[i])
                 longer_arr.remove(shorter_arr[i])
         return res
+
+# can definitely do better!
