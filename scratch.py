@@ -42,29 +42,49 @@
 # print(largestInteger(247))
 # # 427
 
-def checkIfExist(arr):
-    arr = sorted(arr)
+# def checkIfExist(arr):
+#     arr = sorted(arr)
 
-    def binary_search(arr, first, last, target):
-        l, r = first, last
-        mid = (l + r) // 2
-        while l <= r:
-            if arr[mid] == target:
-                return 1
-            if arr[mid] > target:
-                r = mid - 1
-            if arr[mid] < target:
-                l = mid + 1
-        return 0
+#     def binary_search(arr, first, last, target):
+#         l, r = first, last
+#         mid = (l + r) // 2
+#         while l <= r:
+#             if arr[mid] == target:
+#                 return 1
+#             if arr[mid] > target:
+#                 r = mid - 1
+#             if arr[mid] < target:
+#                 l = mid + 1
+#         return 0
 
-    for i in range(len(arr)):
-        if(binary_search(arr, i + 1, len(arr) - 1, 2 * arr[i])):
-            return True
-    return False
+#     for i in range(len(arr)):
+#         if(binary_search(arr, i + 1, len(arr) - 1, 2 * arr[i])):
+#             return True
+#     return False
 
 
-# print(checkIfExist([1, 3]))
-print(checkIfExist([10, 2, 5, 3]))
-print(checkIfExist([7, 1, 14, 11]))
-print(checkIfExist([3, 1, 7, 11]))
-print(checkIfExist([-2, 0, 10, -19, 4, 6, -8]))
+# # print(checkIfExist([1, 3]))
+# print(checkIfExist([10, 2, 5, 3]))
+# print(checkIfExist([7, 1, 14, 11]))
+# print(checkIfExist([3, 1, 7, 11]))
+# print(checkIfExist([-2, 0, 10, -19, 4, 6, -8]))
+
+import math
+
+
+def minimumRecolors(blocks, k):
+    ans = math.inf
+    for i in range(len(blocks) - k + 1):
+        print("i", i)
+        w = blocks[i:i + k]
+        print(w)
+        c = 0
+        for color in w:
+            if color == 'W':
+                c += 1
+        ans = min(ans, c)
+    return ans
+
+
+print(minimumRecolors("WBBWWBBWBW", 7))
+# print(minimumRecolors("WBB", 2))
