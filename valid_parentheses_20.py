@@ -30,7 +30,7 @@ class Solution:
         mapping = {")": "(", "}": "{", "]": "["}
         stack = []
         for char in s:
-            if char not in mapping:  # opening parentheses
+            if char not in mapping:  # opening  parentheses
                 stack.append(char)
             else:  # closing parentheses
                 if len(stack) == 0:
