@@ -10,6 +10,9 @@ def minimum_window(s, t):
     for char, count in hash_t.items():
         if hash_s.get(char, 0) < count:
             return ""
+    print(hash_s, hash_t)
+    if hash_s == hash_t:
+        return t
     # getting the indices of characters in t
     left_val = []
     for i in range(len(s)):
@@ -45,12 +48,10 @@ def minimum_window(s, t):
             return key
 
 
-# ??
-# "aa", "aa"
 # Testing
 assert(minimum_window("adobecodebanc", "abc")) == "banc"
 assert(minimum_window("a", "a")) == "a"
 assert(minimum_window("a", "aa")) == ""
 print(minimum_window("adobecodebanc", "abc"))
 print(minimum_window("a", "a"))
-print(minimum_window("a", "aa"))
+print(minimum_window("aa", "aa"))

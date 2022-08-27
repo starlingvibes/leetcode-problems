@@ -1,0 +1,170 @@
+BASIC BFS TEMPLATE
+
+
+def BFS(self, root: Optional[TreeNode]) -> List[List[int]]:
+    queue = deque()
+    res = []
+
+    if root is None:
+        return res
+    queue.append(root)
+    while queue:
+        levelSize = len(queue)
+        for i in range(levelSize):
+            curNode = queue.popleft()
+            # Do Something Here
+            if curNode.left:
+                queue.append(curNode.left)
+            if curNode.right:
+                queue.append(curNode.right)
+        res.append(curLevel)
+    return res
+
+
+Leetcode 102: Binary Tree Level Order Traversal
+https: // leetcode.com/problems/binary-tree-level-order-traversal/
+From Our Template above, we only need to fill out one place since we decided to do a BFS travese on the Tree.
+
+
+def BFS(self, root: Optional[TreeNode]) -> List[List[int]]:
+    queue = deque()
+    res = []
+
+    if root is None:
+        return res
+    queue.append(root)
+    while queue:
+        levelSize = len(queue)
+        curLevel = []  # This is the list to store current level nodes
+
+        for i in range(levelSize):
+            curNode = queue.popleft()
+            curLevel.append(curNode.val)
+            if curNode.left:
+                queue.append(curNode.left)
+            if curNode.right:
+                queue.append(curNode.right)
+        res.append(curLevel)
+    return res
+
+
+Leetcode 107: Binary Tree Level Order Traversal II
+https: // leetcode.com/problems/binary-tree-level-order-traversal-ii/
+Notice the only thing differenent is the bottom tree nodes come into the result list first. This is can easily achieved by using appendleft()opearation
+
+
+def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+    queue = deque()
+    res = deque()
+
+    if root is None:
+        return res
+    queue.append(root)
+    while queue:
+        levelSize = len(queue)
+        curLevel = []
+
+        for i in range(levelSize):
+            curNode = queue.popleft()
+            curLevel.append(curNode.val)
+            if curNode.left:
+                queue.append(curNode.left)
+            if curNode.right:
+                queue.append(curNode.right)
+        # <------ This is the only place changed compared to Leetcode 102
+        res.appendleft(curLevel)
+    return res
+
+
+Leetcode 103: Binary Tree Zigzag Level Order Traversal
+https: // leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+If we build on our solution from 103, we can call append() and appendleft() on the curLevel depending on the level. We can do this by introducing a new varaible to keep track of which direction we are appending our nodes values.
+
+
+def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    queue = deque()
+    res = []
+    leftToRight = True  # <----- Flag to keep track the direction
+
+    if root is None:
+        return res
+
+    queue.append(root)
+
+    while queue:
+        levelSize = len(queue)
+        curLevel = deque()
+
+        for i in range(levelSize):
+            curNode = queue.popleft()
+            if leftToRight:
+                # <---- depending on the falg, we pick append() or appendleft()
+                curLevel.append(curNode.val)
+            else:
+                curLevel.appendleft(curNode.val)
+            if curNode.left:
+                queue.append(curNode.left)
+            if curNode.right:
+                queue.append(curNode.right)
+        res.append(list(curLevel))
+        leftToRight = not leftToRight   # <------ Revert it after each level
+
+    return res
+
+
+Leetcode 637: Average of Levels in Binary Tree
+https: // leetcode.com/problems/average-of-levels-in-binary-tree/
+Using our basic BFS template, we only need to add logic to calculate the average and append to the res list.
+
+
+def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+    queue = deque()
+    res = []
+
+    if root is None:
+        return res
+    queue.append(root)
+    while queue:
+        curSum = 0.0
+        levelSize = len(queue)
+        for _ in range(levelSize):
+            curNode = queue.popleft()
+            curSum += curNode.val   # <----- Use curSum to keep track of sum of current level
+
+            if curNode.left:
+                queue.append(curNode.left)
+            if curNode.right:
+                queue.append(curNode.right)
+
+        # <----- push the average to the res list
+        res.append(curSum/levelSize)
+    return res
+
+
+Leetcode 199: Binary Tree Right Side View
+https: // leetcode.com/problems/binary-tree-right-side-view
+
+
+def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+    res = []
+    # Edge cases
+    if root is None:
+        return res
+
+    queue = deque()  # initialize a queue for BFS
+    queue.append(root)
+
+    while queue:
+        levelSize = len(queue)
+        for i in range(levelSize):
+            curNode = queue.popleft()
+            if i == levelSize - 1:
+                # if i is the levelSize - 1, that means curNode is the right most node in this level.
+                res.append(curNode.val)
+            if curNode.left:
+                # maintaining a queue
+                queue.append(curNode.left)
+            if curNode.right:
+                # maintaining a queue
+                queue.append(curNode.right)
+    return res
