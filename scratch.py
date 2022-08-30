@@ -69,6 +69,7 @@
 # print(checkIfExist([3, 1, 7, 11]))
 # print(checkIfExist([-2, 0, 10, -19, 4, 6, -8]))
 
+import string
 import math
 
 
@@ -88,3 +89,26 @@ def minimumRecolors(blocks, k):
 
 print(minimumRecolors("WBBWWBBWBW", 7))
 # print(minimumRecolors("WBB", 2))
+
+
+def decode(key, message):
+    mapping = {}
+    a = list(string.ascii_lowercase)
+    count = 0
+    for char in key:
+        if char == " ":
+            continue
+        if char not in mapping:
+            mapping.update({char: a[count]})
+            count += 1
+    res = []
+    for char in message:
+        if char == " ":
+            res.append(char)
+            continue
+        res.append(mapping[char])
+
+    return "".join(res)
+
+
+print(decode("the quick brown fox jumps over the lazy dog", "vkbs bs t suepuv"))
