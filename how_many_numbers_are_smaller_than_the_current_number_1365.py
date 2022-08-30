@@ -30,5 +30,20 @@ Constraints:
 
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
-        ans = sorted(nums)
-        return [ans.index(x)]
+        mapArr = [0] * (max(nums) + 1)
+        res = []
+
+        for num in nums:
+            mapArr[num] += 1
+
+        for i in range(1, len(mapArr)):
+            mapArr[i] += mapArr[i - 1]
+
+        for x in nums:
+            if x == 0:
+                res.append(0)
+            else:
+                res.append(mapArr[x - 1])
+        return res
+        # ans = sorted(nums)
+        # return [ans.index(x)]
