@@ -1,4 +1,4 @@
-BASIC BFS TEMPLATE
+BASIC BF S TEMPLATE
 
 
 def BFS(self, root: Optional[TreeNode]) -> List[List[int]]:
