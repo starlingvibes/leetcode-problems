@@ -69,46 +69,86 @@
 # print(checkIfExist([3, 1, 7, 11]))
 # print(checkIfExist([-2, 0, 10, -19, 4, 6, -8]))
 
-import string
-import math
+# import string
+# import math
 
 
-def minimumRecolors(blocks, k):
-    ans = math.inf
-    for i in range(len(blocks) - k + 1):
-        print("i", i)
-        w = blocks[i:i + k]
-        print(w)
-        c = 0
-        for color in w:
-            if color == 'W':
-                c += 1
-        ans = min(ans, c)
-    return ans
+# def minimumRecolors(blocks, k):
+#     ans = math.inf
+#     for i in range(len(blocks) - k + 1):
+#         print("i", i)
+#         w = blocks[i:i + k]
+#         print(w)
+#         c = 0
+#         for color in w:
+#             if color == 'W':
+#                 c += 1
+#         ans = min(ans, c)
+#     return ans
 
 
-print(minimumRecolors("WBBWWBBWBW", 7))
-# print(minimumRecolors("WBB", 2))
+# print(minimumRecolors("WBBWWBBWBW", 7))
+# # print(minimumRecolors("WBB", 2))
 
 
-def decode(key, message):
-    mapping = {}
-    a = list(string.ascii_lowercase)
-    count = 0
-    for char in key:
-        if char == " ":
-            continue
-        if char not in mapping:
-            mapping.update({char: a[count]})
-            count += 1
-    res = []
-    for char in message:
-        if char == " ":
-            res.append(char)
-            continue
-        res.append(mapping[char])
+# def decode(key, message):
+#     mapping = {}
+#     a = list(string.ascii_lowercase)
+#     count = 0
+#     for char in key:
+#         if char == " ":
+#             continue
+#         if char not in mapping:
+#             mapping.update({char: a[count]})
+#             count += 1
+#     res = []
+#     for char in message:
+#         if char == " ":
+#             res.append(char)
+#             continue
+#         res.append(mapping[char])
 
-    return "".join(res)
+#     return "".join(res)
 
 
-print(decode("the quick brown fox jumps over the lazy dog", "vkbs bs t suepuv"))
+# print(decode("the quick brown fox jumps over the lazy dog", "vkbs bs t suepuv"))
+# class Solution:
+# from collections import defaultdict
+
+
+# def sumPrefixScores(words):
+#     res = [0] * len(words)
+
+#     # for i in range(len(words)):
+#     #     res[i] = len(words[i])
+
+#     hashmap = defaultdict(list)
+
+#     for word in words:
+#         for char in word:
+#             i = 0
+#             while i < len(word):
+#                 i += 1
+#                 if word[:i] == char:
+#                     hashmap[word[:i]].append(word)
+
+#     for i in range(len(words)):
+#         for j in range(len(words[i])):
+#             res[i] += len(hashmap[words[i][:j]])
+#         # res[i] += len(hashmap[words[i]])
+
+#     for i in range(len(res)):
+#         res[i] += len(words[i])
+#     return res
+
+
+# print(sumPrefixScores(["abc", "ab", "bc", "b"]))
+
+def sherlock(s):
+    if len(set(s)) == len(s) or len(set(s)) + 1 == len(s):
+        return "YES"
+    else:
+        return "NO"
+
+
+print(sherlock("abbcc"))
