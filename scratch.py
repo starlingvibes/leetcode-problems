@@ -149,6 +149,3 @@ def sherlock(s):
         return "YES"
     else:
         return "NO"
-
-
-print(sherlock("abbcc"))
