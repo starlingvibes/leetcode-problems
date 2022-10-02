@@ -33,7 +33,7 @@ Can you do it without using any built-in function (i.e., like __builtin_popcount
 
 
 class Solution:
-    def countBits(self, n: int) -> List[int]:
+    def countBits(self, n: int) -> list[int]:
         def hamming(num):
             count = 0
             while num:
